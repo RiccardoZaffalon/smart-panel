@@ -1,0 +1,140 @@
+@import 'reset';
+@import 'fonts';
+
+$background: rgb(236, 232, 228);
+$text-primary: rgb(58, 58, 58);
+$accent: rgb(0, 212, 159);
+
+body, html {
+    background: $background;
+    color: $text-primary;
+    text-shadow: 0 2px 2px #2027380c;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    height: 100%;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+svg {
+    fill: currentColor;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.dark {
+    font-weight: 400;
+}
+
+.strong {
+    font-weight: 500;
+}
+
+.panel {
+    background: $background;
+    height: 100%;
+    font-size: 3em;
+    padding: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
+    grid-template-rows: repeat(6, 1fr);
+
+    &__cell {
+        display: flex;
+        flex-direction: column;
+
+        // Cells
+        &.date {
+            align-items: flex-end;
+            justify-content: flex-start;
+            text-align: right;
+
+            // Grid placement
+            grid-column-start: 6;
+            grid-column-end: 7;
+        }
+
+        &.clock {
+            align-items: flex-end;
+            justify-content: center;
+            height: 180px;
+
+            // Grid placement
+            grid-column-start: 5;
+            grid-column-end: 7;
+        }
+
+        &.weather {
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            // Grid placement
+            grid-column-start: 6;
+            grid-column-end: 7;
+            grid-row-start: 6;
+            grid-row-end: 7;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        &.temperature {
+            align-items: flex-end;
+            justify-content: flex-end;
+
+            // Grid placement
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 3;
+            grid-row-end: 6;
+        }
+
+        .date {
+            font-size: 0.85em;
+            margin-bottom: 0.4em;
+        }
+
+        .date-month {
+            font-size: 0.5em;
+            opacity: 0.7;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .clock {
+            font-weight: 100;
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: -3px;
+            font-size: 1.75em;
+        }
+
+        .current-weather-summary {
+            font-size: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hourly-weather-summary {
+            font-size: 0.35em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.75em;
+            opacity: 0.7;
+        }
+    }
+}
+
+.label {
+    color: darken($accent, 10%);
+    background-color: rgba($accent, 0.2);
+    display: inline-block;
+    font-size: 0.2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.5em;
+    border-radius: 4px;
+    font-weight: 500;
+}

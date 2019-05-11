@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Icon kit preview | gulp-svg-sprites</title>
+    <link href="css/sprite.css" rel="stylesheet" type="text/css" media="all"/>
+    <style type="text/css">@CHARSET "UTF-8";
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        padding: 0;
+        margin: 0;
+        color: #666;
+        background: #fafafa;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        line-height: 1.4
+    }
+
+    header {
+        display: block;
+        padding: 3em 3em 2em 3em;
+        background-color: #fff
+    }
+
+    header p {
+        margin: 0 0 0 0;
+    }
+
+    nav {
+        font-size: .7em;
+        display: block;
+        width: 100%;
+        margin: 0 0 2em 0
+    }
+
+    nav a {
+        display: inline-block;
+        text-decoration: none;
+        margin-left: 2em;
+        color: #0f7595;
+        white-space: nowrap
+    }
+
+    nav a:hover {
+        text-decoration: underline
+    }
+
+    nav a.current {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #666
+    }
+
+    section {
+        border-top: 1px solid #eee;
+        padding: 2em 3em 0 3em
+    }
+
+    ul {
+        margin: 0;
+        padding: 0
+    }
+
+    .icon-boxes li {
+        display: inline-block;
+        background-color: #fff;
+        position: relative;
+        margin: 0 2em 2em 0;
+        vertical-align: top;
+        border: 1px solid #ccc;
+        padding: 1em 1em 1em 1em;
+        cursor: default
+    }
+
+    .icon-box {
+        margin: 0;
+        width: 144px;
+        height: 144px;
+        position: relative;
+        background: #ccc url(data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=) top left repeat;
+        border: 1px solid #ccc;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center
+    }
+    .icon-box.inverted {
+        background: black;
+    }
+
+    .icon {
+        display: inline;
+        display: inline-block
+    }
+
+    .snippet-popover {
+        position: absolute;
+        display: none;
+        opacity: 0;
+        bottom: 0;
+        left: 0;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 16px;
+        z-index: 1;
+        transition: all .3s;
+    }
+    .snippet-popover.active {
+        display: block;
+        opacity: 1;
+    }
+
+    pre {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 5px 0;
+        font-size: 1em;
+        font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    h4 {
+        margin: 0;
+    }
+
+    footer {
+        display: block;
+        margin: 0;
+        padding: 0 3em 3em 3em
+    }
+
+    footer p {
+        margin: 0;
+        font-size: .7em
+    }
+
+    footer a {
+        color: #0f7595;
+        margin-left: 0
+    }
+    </style>
+</head>
+<body>
+<header>
+    <h1 id="logo">Gulp SVG Sprites</h1>
+    <h4>Files Generated:</h4>
+    <ol>
+        <li><a href="css/sprite.css">css/sprite.css</a></li>
+        <li><a href="svg/sprite.svg">svg/sprite.svg</a></li>
+    </ol>
+    <h4>Usage:</h4>
+    <ol>
+        <li>
+            Include the <a href="css/sprite.css">CSS file</a> into your project.
+        </li>
+        <li>
+            Paste one of the snippets anywhere into your website.
+        </li>
+    </ol>
+</header>
+<section>
+    <nav><button onclick="toggleMode()">Toggle PNG/SVG</button> (showing <span id="mode-view">SVG</span>)<br><br><input type="range" onchange="setSize(this.value)" min="2" max="14"></nav>
+    <ul class="icon-boxes">
+
+
+
+      
+
+        <li title="Cloud">
+            <div class="icon-box" id="icon-box-Cloud">
+                <div class="icon Cloud"></div>
+            </div>
+            <h2>Cloud</h2>
+            <button onclick="showPopover('snippet-Cloud')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud">
+                <pre><code>&lt;span class=&quot;icon Cloud&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Download">
+            <div class="icon-box" id="icon-box-Cloud-Download">
+                <div class="icon Cloud-Download"></div>
+            </div>
+            <h2>Cloud-Download</h2>
+            <button onclick="showPopover('snippet-Cloud-Download')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Download')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Download">
+                <pre><code>&lt;span class=&quot;icon Cloud-Download&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Drizzle">
+            <div class="icon-box" id="icon-box-Cloud-Drizzle">
+                <div class="icon Cloud-Drizzle"></div>
+            </div>
+            <h2>Cloud-Drizzle</h2>
+            <button onclick="showPopover('snippet-Cloud-Drizzle')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Drizzle')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Drizzle">
+                <pre><code>&lt;span class=&quot;icon Cloud-Drizzle&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Drizzle-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Drizzle-Alt">
+                <div class="icon Cloud-Drizzle-Alt"></div>
+            </div>
+            <h2>Cloud-Drizzle-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Drizzle-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Drizzle-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Drizzle-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Drizzle-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Drizzle-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Drizzle-Moon">
+                <div class="icon Cloud-Drizzle-Moon"></div>
+            </div>
+            <h2>Cloud-Drizzle-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Drizzle-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Drizzle-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Drizzle-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Drizzle-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Drizzle-Moon-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Drizzle-Moon-Alt">
+                <div class="icon Cloud-Drizzle-Moon-Alt"></div>
+            </div>
+            <h2>Cloud-Drizzle-Moon-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Drizzle-Moon-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Drizzle-Moon-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Drizzle-Moon-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Drizzle-Moon-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Drizzle-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Drizzle-Sun">
+                <div class="icon Cloud-Drizzle-Sun"></div>
+            </div>
+            <h2>Cloud-Drizzle-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Drizzle-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Drizzle-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Drizzle-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Drizzle-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Drizzle-Sun-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Drizzle-Sun-Alt">
+                <div class="icon Cloud-Drizzle-Sun-Alt"></div>
+            </div>
+            <h2>Cloud-Drizzle-Sun-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Drizzle-Sun-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Drizzle-Sun-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Drizzle-Sun-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Drizzle-Sun-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Fog">
+            <div class="icon-box" id="icon-box-Cloud-Fog">
+                <div class="icon Cloud-Fog"></div>
+            </div>
+            <h2>Cloud-Fog</h2>
+            <button onclick="showPopover('snippet-Cloud-Fog')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Fog')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Fog">
+                <pre><code>&lt;span class=&quot;icon Cloud-Fog&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Fog-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Fog-Alt">
+                <div class="icon Cloud-Fog-Alt"></div>
+            </div>
+            <h2>Cloud-Fog-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Fog-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Fog-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Fog-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Fog-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Fog-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Fog-Moon">
+                <div class="icon Cloud-Fog-Moon"></div>
+            </div>
+            <h2>Cloud-Fog-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Fog-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Fog-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Fog-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Fog-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Fog-Moon-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Fog-Moon-Alt">
+                <div class="icon Cloud-Fog-Moon-Alt"></div>
+            </div>
+            <h2>Cloud-Fog-Moon-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Fog-Moon-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Fog-Moon-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Fog-Moon-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Fog-Moon-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Fog-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Fog-Sun">
+                <div class="icon Cloud-Fog-Sun"></div>
+            </div>
+            <h2>Cloud-Fog-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Fog-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Fog-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Fog-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Fog-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Fog-Sun-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Fog-Sun-Alt">
+                <div class="icon Cloud-Fog-Sun-Alt"></div>
+            </div>
+            <h2>Cloud-Fog-Sun-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Fog-Sun-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Fog-Sun-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Fog-Sun-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Fog-Sun-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Hail">
+            <div class="icon-box" id="icon-box-Cloud-Hail">
+                <div class="icon Cloud-Hail"></div>
+            </div>
+            <h2>Cloud-Hail</h2>
+            <button onclick="showPopover('snippet-Cloud-Hail')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Hail')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Hail">
+                <pre><code>&lt;span class=&quot;icon Cloud-Hail&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Hail-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Hail-Alt">
+                <div class="icon Cloud-Hail-Alt"></div>
+            </div>
+            <h2>Cloud-Hail-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Hail-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Hail-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Hail-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Hail-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Hail-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Hail-Moon">
+                <div class="icon Cloud-Hail-Moon"></div>
+            </div>
+            <h2>Cloud-Hail-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Hail-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Hail-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Hail-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Hail-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Hail-Moon-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Hail-Moon-Alt">
+                <div class="icon Cloud-Hail-Moon-Alt"></div>
+            </div>
+            <h2>Cloud-Hail-Moon-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Hail-Moon-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Hail-Moon-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Hail-Moon-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Hail-Moon-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Hail-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Hail-Sun">
+                <div class="icon Cloud-Hail-Sun"></div>
+            </div>
+            <h2>Cloud-Hail-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Hail-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Hail-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Hail-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Hail-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Hail-Sun-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Hail-Sun-Alt">
+                <div class="icon Cloud-Hail-Sun-Alt"></div>
+            </div>
+            <h2>Cloud-Hail-Sun-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Hail-Sun-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Hail-Sun-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Hail-Sun-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Hail-Sun-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Lightning">
+            <div class="icon-box" id="icon-box-Cloud-Lightning">
+                <div class="icon Cloud-Lightning"></div>
+            </div>
+            <h2>Cloud-Lightning</h2>
+            <button onclick="showPopover('snippet-Cloud-Lightning')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Lightning')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Lightning">
+                <pre><code>&lt;span class=&quot;icon Cloud-Lightning&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Lightning-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Lightning-Moon">
+                <div class="icon Cloud-Lightning-Moon"></div>
+            </div>
+            <h2>Cloud-Lightning-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Lightning-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Lightning-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Lightning-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Lightning-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Lightning-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Lightning-Sun">
+                <div class="icon Cloud-Lightning-Sun"></div>
+            </div>
+            <h2>Cloud-Lightning-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Lightning-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Lightning-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Lightning-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Lightning-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Moon">
+                <div class="icon Cloud-Moon"></div>
+            </div>
+            <h2>Cloud-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Rain">
+            <div class="icon-box" id="icon-box-Cloud-Rain">
+                <div class="icon Cloud-Rain"></div>
+            </div>
+            <h2>Cloud-Rain</h2>
+            <button onclick="showPopover('snippet-Cloud-Rain')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Rain')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Rain">
+                <pre><code>&lt;span class=&quot;icon Cloud-Rain&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Rain-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Rain-Alt">
+                <div class="icon Cloud-Rain-Alt"></div>
+            </div>
+            <h2>Cloud-Rain-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Rain-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Rain-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Rain-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Rain-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Rain-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Rain-Moon">
+                <div class="icon Cloud-Rain-Moon"></div>
+            </div>
+            <h2>Cloud-Rain-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Rain-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Rain-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Rain-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Rain-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Rain-Moon-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Rain-Moon-Alt">
+                <div class="icon Cloud-Rain-Moon-Alt"></div>
+            </div>
+            <h2>Cloud-Rain-Moon-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Rain-Moon-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Rain-Moon-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Rain-Moon-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Rain-Moon-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Rain-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Rain-Sun">
+                <div class="icon Cloud-Rain-Sun"></div>
+            </div>
+            <h2>Cloud-Rain-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Rain-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Rain-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Rain-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Rain-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Rain-Sun-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Rain-Sun-Alt">
+                <div class="icon Cloud-Rain-Sun-Alt"></div>
+            </div>
+            <h2>Cloud-Rain-Sun-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Rain-Sun-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Rain-Sun-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Rain-Sun-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Rain-Sun-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Refresh">
+            <div class="icon-box" id="icon-box-Cloud-Refresh">
+                <div class="icon Cloud-Refresh"></div>
+            </div>
+            <h2>Cloud-Refresh</h2>
+            <button onclick="showPopover('snippet-Cloud-Refresh')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Refresh')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Refresh">
+                <pre><code>&lt;span class=&quot;icon Cloud-Refresh&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Snow">
+            <div class="icon-box" id="icon-box-Cloud-Snow">
+                <div class="icon Cloud-Snow"></div>
+            </div>
+            <h2>Cloud-Snow</h2>
+            <button onclick="showPopover('snippet-Cloud-Snow')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Snow')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Snow">
+                <pre><code>&lt;span class=&quot;icon Cloud-Snow&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Snow-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Snow-Alt">
+                <div class="icon Cloud-Snow-Alt"></div>
+            </div>
+            <h2>Cloud-Snow-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Snow-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Snow-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Snow-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Snow-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Snow-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Snow-Moon">
+                <div class="icon Cloud-Snow-Moon"></div>
+            </div>
+            <h2>Cloud-Snow-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Snow-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Snow-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Snow-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Snow-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Snow-Moon-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Snow-Moon-Alt">
+                <div class="icon Cloud-Snow-Moon-Alt"></div>
+            </div>
+            <h2>Cloud-Snow-Moon-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Snow-Moon-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Snow-Moon-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Snow-Moon-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Snow-Moon-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Snow-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Snow-Sun">
+                <div class="icon Cloud-Snow-Sun"></div>
+            </div>
+            <h2>Cloud-Snow-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Snow-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Snow-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Snow-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Snow-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Snow-Sun-Alt">
+            <div class="icon-box" id="icon-box-Cloud-Snow-Sun-Alt">
+                <div class="icon Cloud-Snow-Sun-Alt"></div>
+            </div>
+            <h2>Cloud-Snow-Sun-Alt</h2>
+            <button onclick="showPopover('snippet-Cloud-Snow-Sun-Alt')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Snow-Sun-Alt')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Snow-Sun-Alt">
+                <pre><code>&lt;span class=&quot;icon Cloud-Snow-Sun-Alt&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Sun">
+                <div class="icon Cloud-Sun"></div>
+            </div>
+            <h2>Cloud-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Upload">
+            <div class="icon-box" id="icon-box-Cloud-Upload">
+                <div class="icon Cloud-Upload"></div>
+            </div>
+            <h2>Cloud-Upload</h2>
+            <button onclick="showPopover('snippet-Cloud-Upload')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Upload')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Upload">
+                <pre><code>&lt;span class=&quot;icon Cloud-Upload&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Wind">
+            <div class="icon-box" id="icon-box-Cloud-Wind">
+                <div class="icon Cloud-Wind"></div>
+            </div>
+            <h2>Cloud-Wind</h2>
+            <button onclick="showPopover('snippet-Cloud-Wind')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Wind')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Wind">
+                <pre><code>&lt;span class=&quot;icon Cloud-Wind&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Wind-Moon">
+            <div class="icon-box" id="icon-box-Cloud-Wind-Moon">
+                <div class="icon Cloud-Wind-Moon"></div>
+            </div>
+            <h2>Cloud-Wind-Moon</h2>
+            <button onclick="showPopover('snippet-Cloud-Wind-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Wind-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Wind-Moon">
+                <pre><code>&lt;span class=&quot;icon Cloud-Wind-Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Cloud-Wind-Sun">
+            <div class="icon-box" id="icon-box-Cloud-Wind-Sun">
+                <div class="icon Cloud-Wind-Sun"></div>
+            </div>
+            <h2>Cloud-Wind-Sun</h2>
+            <button onclick="showPopover('snippet-Cloud-Wind-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Cloud-Wind-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Cloud-Wind-Sun">
+                <pre><code>&lt;span class=&quot;icon Cloud-Wind-Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Compass">
+            <div class="icon-box" id="icon-box-Compass">
+                <div class="icon Compass"></div>
+            </div>
+            <h2>Compass</h2>
+            <button onclick="showPopover('snippet-Compass')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Compass')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Compass">
+                <pre><code>&lt;span class=&quot;icon Compass&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Compass-East">
+            <div class="icon-box" id="icon-box-Compass-East">
+                <div class="icon Compass-East"></div>
+            </div>
+            <h2>Compass-East</h2>
+            <button onclick="showPopover('snippet-Compass-East')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Compass-East')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Compass-East">
+                <pre><code>&lt;span class=&quot;icon Compass-East&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Compass-North">
+            <div class="icon-box" id="icon-box-Compass-North">
+                <div class="icon Compass-North"></div>
+            </div>
+            <h2>Compass-North</h2>
+            <button onclick="showPopover('snippet-Compass-North')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Compass-North')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Compass-North">
+                <pre><code>&lt;span class=&quot;icon Compass-North&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Compass-South">
+            <div class="icon-box" id="icon-box-Compass-South">
+                <div class="icon Compass-South"></div>
+            </div>
+            <h2>Compass-South</h2>
+            <button onclick="showPopover('snippet-Compass-South')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Compass-South')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Compass-South">
+                <pre><code>&lt;span class=&quot;icon Compass-South&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Compass-West">
+            <div class="icon-box" id="icon-box-Compass-West">
+                <div class="icon Compass-West"></div>
+            </div>
+            <h2>Compass-West</h2>
+            <button onclick="showPopover('snippet-Compass-West')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Compass-West')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Compass-West">
+                <pre><code>&lt;span class=&quot;icon Compass-West&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Degrees-Celcius">
+            <div class="icon-box" id="icon-box-Degrees-Celcius">
+                <div class="icon Degrees-Celcius"></div>
+            </div>
+            <h2>Degrees-Celcius</h2>
+            <button onclick="showPopover('snippet-Degrees-Celcius')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Degrees-Celcius')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Degrees-Celcius">
+                <pre><code>&lt;span class=&quot;icon Degrees-Celcius&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Degrees-Fahrenheit">
+            <div class="icon-box" id="icon-box-Degrees-Fahrenheit">
+                <div class="icon Degrees-Fahrenheit"></div>
+            </div>
+            <h2>Degrees-Fahrenheit</h2>
+            <button onclick="showPopover('snippet-Degrees-Fahrenheit')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Degrees-Fahrenheit')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Degrees-Fahrenheit">
+                <pre><code>&lt;span class=&quot;icon Degrees-Fahrenheit&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon">
+            <div class="icon-box" id="icon-box-Moon">
+                <div class="icon Moon"></div>
+            </div>
+            <h2>Moon</h2>
+            <button onclick="showPopover('snippet-Moon')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon">
+                <pre><code>&lt;span class=&quot;icon Moon&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-First-Quarter">
+            <div class="icon-box" id="icon-box-Moon-First-Quarter">
+                <div class="icon Moon-First-Quarter"></div>
+            </div>
+            <h2>Moon-First-Quarter</h2>
+            <button onclick="showPopover('snippet-Moon-First-Quarter')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-First-Quarter')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-First-Quarter">
+                <pre><code>&lt;span class=&quot;icon Moon-First-Quarter&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-Full">
+            <div class="icon-box" id="icon-box-Moon-Full">
+                <div class="icon Moon-Full"></div>
+            </div>
+            <h2>Moon-Full</h2>
+            <button onclick="showPopover('snippet-Moon-Full')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-Full')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-Full">
+                <pre><code>&lt;span class=&quot;icon Moon-Full&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-Last-Quarter">
+            <div class="icon-box" id="icon-box-Moon-Last-Quarter">
+                <div class="icon Moon-Last-Quarter"></div>
+            </div>
+            <h2>Moon-Last-Quarter</h2>
+            <button onclick="showPopover('snippet-Moon-Last-Quarter')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-Last-Quarter')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-Last-Quarter">
+                <pre><code>&lt;span class=&quot;icon Moon-Last-Quarter&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-New">
+            <div class="icon-box" id="icon-box-Moon-New">
+                <div class="icon Moon-New"></div>
+            </div>
+            <h2>Moon-New</h2>
+            <button onclick="showPopover('snippet-Moon-New')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-New')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-New">
+                <pre><code>&lt;span class=&quot;icon Moon-New&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-Waning-Crescent">
+            <div class="icon-box" id="icon-box-Moon-Waning-Crescent">
+                <div class="icon Moon-Waning-Crescent"></div>
+            </div>
+            <h2>Moon-Waning-Crescent</h2>
+            <button onclick="showPopover('snippet-Moon-Waning-Crescent')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-Waning-Crescent')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-Waning-Crescent">
+                <pre><code>&lt;span class=&quot;icon Moon-Waning-Crescent&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-Waning-Gibbous">
+            <div class="icon-box" id="icon-box-Moon-Waning-Gibbous">
+                <div class="icon Moon-Waning-Gibbous"></div>
+            </div>
+            <h2>Moon-Waning-Gibbous</h2>
+            <button onclick="showPopover('snippet-Moon-Waning-Gibbous')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-Waning-Gibbous')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-Waning-Gibbous">
+                <pre><code>&lt;span class=&quot;icon Moon-Waning-Gibbous&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-Waxing-Crescent">
+            <div class="icon-box" id="icon-box-Moon-Waxing-Crescent">
+                <div class="icon Moon-Waxing-Crescent"></div>
+            </div>
+            <h2>Moon-Waxing-Crescent</h2>
+            <button onclick="showPopover('snippet-Moon-Waxing-Crescent')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-Waxing-Crescent')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-Waxing-Crescent">
+                <pre><code>&lt;span class=&quot;icon Moon-Waxing-Crescent&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Moon-Waxing-Gibbous">
+            <div class="icon-box" id="icon-box-Moon-Waxing-Gibbous">
+                <div class="icon Moon-Waxing-Gibbous"></div>
+            </div>
+            <h2>Moon-Waxing-Gibbous</h2>
+            <button onclick="showPopover('snippet-Moon-Waxing-Gibbous')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Moon-Waxing-Gibbous')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Moon-Waxing-Gibbous">
+                <pre><code>&lt;span class=&quot;icon Moon-Waxing-Gibbous&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Shades">
+            <div class="icon-box" id="icon-box-Shades">
+                <div class="icon Shades"></div>
+            </div>
+            <h2>Shades</h2>
+            <button onclick="showPopover('snippet-Shades')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Shades')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Shades">
+                <pre><code>&lt;span class=&quot;icon Shades&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Snowflake">
+            <div class="icon-box" id="icon-box-Snowflake">
+                <div class="icon Snowflake"></div>
+            </div>
+            <h2>Snowflake</h2>
+            <button onclick="showPopover('snippet-Snowflake')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Snowflake')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Snowflake">
+                <pre><code>&lt;span class=&quot;icon Snowflake&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Sun">
+            <div class="icon-box" id="icon-box-Sun">
+                <div class="icon Sun"></div>
+            </div>
+            <h2>Sun</h2>
+            <button onclick="showPopover('snippet-Sun')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Sun')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Sun">
+                <pre><code>&lt;span class=&quot;icon Sun&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Sun-Low">
+            <div class="icon-box" id="icon-box-Sun-Low">
+                <div class="icon Sun-Low"></div>
+            </div>
+            <h2>Sun-Low</h2>
+            <button onclick="showPopover('snippet-Sun-Low')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Sun-Low')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Sun-Low">
+                <pre><code>&lt;span class=&quot;icon Sun-Low&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Sun-Lower">
+            <div class="icon-box" id="icon-box-Sun-Lower">
+                <div class="icon Sun-Lower"></div>
+            </div>
+            <h2>Sun-Lower</h2>
+            <button onclick="showPopover('snippet-Sun-Lower')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Sun-Lower')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Sun-Lower">
+                <pre><code>&lt;span class=&quot;icon Sun-Lower&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Sunrise">
+            <div class="icon-box" id="icon-box-Sunrise">
+                <div class="icon Sunrise"></div>
+            </div>
+            <h2>Sunrise</h2>
+            <button onclick="showPopover('snippet-Sunrise')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Sunrise')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Sunrise">
+                <pre><code>&lt;span class=&quot;icon Sunrise&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Sunset">
+            <div class="icon-box" id="icon-box-Sunset">
+                <div class="icon Sunset"></div>
+            </div>
+            <h2>Sunset</h2>
+            <button onclick="showPopover('snippet-Sunset')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Sunset')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Sunset">
+                <pre><code>&lt;span class=&quot;icon Sunset&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Thermometer">
+            <div class="icon-box" id="icon-box-Thermometer">
+                <div class="icon Thermometer"></div>
+            </div>
+            <h2>Thermometer</h2>
+            <button onclick="showPopover('snippet-Thermometer')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Thermometer')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Thermometer">
+                <pre><code>&lt;span class=&quot;icon Thermometer&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Thermometer-100">
+            <div class="icon-box" id="icon-box-Thermometer-100">
+                <div class="icon Thermometer-100"></div>
+            </div>
+            <h2>Thermometer-100</h2>
+            <button onclick="showPopover('snippet-Thermometer-100')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Thermometer-100')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Thermometer-100">
+                <pre><code>&lt;span class=&quot;icon Thermometer-100&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Thermometer-25">
+            <div class="icon-box" id="icon-box-Thermometer-25">
+                <div class="icon Thermometer-25"></div>
+            </div>
+            <h2>Thermometer-25</h2>
+            <button onclick="showPopover('snippet-Thermometer-25')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Thermometer-25')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Thermometer-25">
+                <pre><code>&lt;span class=&quot;icon Thermometer-25&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Thermometer-50">
+            <div class="icon-box" id="icon-box-Thermometer-50">
+                <div class="icon Thermometer-50"></div>
+            </div>
+            <h2>Thermometer-50</h2>
+            <button onclick="showPopover('snippet-Thermometer-50')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Thermometer-50')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Thermometer-50">
+                <pre><code>&lt;span class=&quot;icon Thermometer-50&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Thermometer-75">
+            <div class="icon-box" id="icon-box-Thermometer-75">
+                <div class="icon Thermometer-75"></div>
+            </div>
+            <h2>Thermometer-75</h2>
+            <button onclick="showPopover('snippet-Thermometer-75')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Thermometer-75')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Thermometer-75">
+                <pre><code>&lt;span class=&quot;icon Thermometer-75&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Thermometer-Zero">
+            <div class="icon-box" id="icon-box-Thermometer-Zero">
+                <div class="icon Thermometer-Zero"></div>
+            </div>
+            <h2>Thermometer-Zero</h2>
+            <button onclick="showPopover('snippet-Thermometer-Zero')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Thermometer-Zero')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Thermometer-Zero">
+                <pre><code>&lt;span class=&quot;icon Thermometer-Zero&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Tornado">
+            <div class="icon-box" id="icon-box-Tornado">
+                <div class="icon Tornado"></div>
+            </div>
+            <h2>Tornado</h2>
+            <button onclick="showPopover('snippet-Tornado')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Tornado')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Tornado">
+                <pre><code>&lt;span class=&quot;icon Tornado&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Umbrella">
+            <div class="icon-box" id="icon-box-Umbrella">
+                <div class="icon Umbrella"></div>
+            </div>
+            <h2>Umbrella</h2>
+            <button onclick="showPopover('snippet-Umbrella')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Umbrella')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Umbrella">
+                <pre><code>&lt;span class=&quot;icon Umbrella&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+        <li title="Wind">
+            <div class="icon-box" id="icon-box-Wind">
+                <div class="icon Wind"></div>
+            </div>
+            <h2>Wind</h2>
+            <button onclick="showPopover('snippet-Wind')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-Wind')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-Wind">
+                <pre><code>&lt;span class=&quot;icon Wind&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+
+
+      
+
+    </ul>
+</section>
+<footer>
+    <p>Generated by <a href="https://github.com/shakyshane/gulp-svg-sprites">Gulp Svg Sprites</a> - Preview page courtesy of <a href="http://iconizr.com" target="_blank">iconizr</a>.</p>
+</footer>
+
+<script type="text/javascript">
+
+    var openSnippet;
+    var modeView = document.getElementById("mode-view");
+    var icons = document.querySelectorAll(".icon");
+
+    function setSize (fontSize) {
+        for (var i = 0; i < icons.length; i++) {
+            icons[i].style.fontSize = fontSize + 'px';
+        }
+    }
+
+    function showPopover(id) {
+        openSnippet = document.getElementById(id);
+        openSnippet.classList.add("active");
+    }
+    function hidePopover() {
+
+        openSnippet.classList.remove("active");
+    }
+    function invertBackground(id) {
+        var elem = document.getElementById(id);
+        elem.classList.toggle("inverted");
+    }
+    function toggleMode() {
+        document.body.classList.toggle("no-svg") ?
+            modeView.innerHTML = "PNG" :
+            modeView.innerHTML = "SVG";
+    }
+</script>
+</body>
+</html>
