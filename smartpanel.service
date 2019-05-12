@@ -3,9 +3,8 @@ Description=Smart Panel Service
 After=network.target
 
 [Service]
-ConditionPathExists==/home/pi/Apps/smart-panel
 WorkingDirectory=/home/pi/Apps/smart-panel
-ExecStart=npm start
+ExecStart=/home/pi/.config/versions/node/v12.2.0/bin/node server
 Restart=on-failure
 User=pi
 Environment=PORT=8000
