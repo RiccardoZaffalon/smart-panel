@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/home/pi/Apps/smart-panel
-ExecStart=/home/pi/.config/versions/node/v12.2.0/bin/node server
+ExecStart=/bin/bash run.sh
 Restart=on-failure
 User=pi
 Environment=PORT=8000
