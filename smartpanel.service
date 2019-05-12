@@ -1,0 +1,13 @@
+[Unit]
+Description=Smart Panel Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/App/smart-panel
+ExecStart=/usr/bin/npm start
+Restart=on-failure
+User=pi
+Environment=PORT=8000
+
+[Install]
+WantedBy=multi-user.target
