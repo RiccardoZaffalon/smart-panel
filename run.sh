@@ -7,4 +7,4 @@ node server
 echo "on 0" | cec-client -s
 
 # Start App in Kiosk mode
-chromium-browser --kiosk http://localhost:3000/
+chromium-browser http://localhost:3000/
