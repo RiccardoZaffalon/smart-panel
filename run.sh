@@ -1,10 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
+cd /apps/smart-panel/
+if [ ! netstat -tulpn | grep LISTEN | grep 3000 ]
+then
+    node server.js
+fi
 
-# Launch Node server
-node server
+chromium-browser http://localhost:3000
 
-# Turn TV ON
-echo "on 0" | cec-client -s
+# Turn TV on
+echo on 0 | cec-client -s -d 1
 
-# Start App in Kiosk mode
-chromium-browser http://localhost:3000/
+# Disable screensaver
+export DISPLAY=:0
+xset q
+xset s off
+xset -dpms
+xset s noblank
