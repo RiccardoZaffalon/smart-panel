@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 cd /apps/smart-panel/
 if [ ! netstat -tulpn | grep LISTEN | grep 3000 ]
 then
