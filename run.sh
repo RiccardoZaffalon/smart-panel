@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd /apps/smart-panel/
-if [ ! netstat -tulpn | grep LISTEN | grep 3000 ]
-then
+
+if ! lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null ; then
     node server.js
 fi
 
