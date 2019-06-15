@@ -3,11 +3,11 @@ Description=Smart Panel Service
 After=network.target
 
 [Service]
-WorkingDirectory=/home/pi/Apps/smart-panel
+WorkingDirectory=/apps/smart-panel
 ExecStart=/bin/bash run.sh
 Restart=on-failure
 User=pi
-Environment=PORT=8000
+Environment=PORT=3000
 
 [Install]
 WantedBy=multi-user.target
