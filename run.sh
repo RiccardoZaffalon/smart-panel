@@ -2,8 +2,8 @@
 
 cd /apps/smart-panel/
 
-if ! lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null ; then
-    node server.js
+if ! lsof -i -P -n | grep :3000 >/dev/null ; then
+    node server.js &
 fi
 
 chromium-browser http://localhost:3000
